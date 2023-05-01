@@ -16,24 +16,20 @@ p {
 html {
 	overflow-y: overlay;
 	overflow-x: hidden;
-
-	&::-webkit-scrollbar {
-		width: 8px;
-	}
-
-	&::-webkit-scrollbar-track {
-		margin-block: 2px;
-	}
-
-	&::-webkit-scrollbar-thumb {
-		background-color: silver;
-		border: 1px solid lightgray;
-		border-radius: 4px;
-	}
-
-	&::-webkit-scrollbar-thumb:hover {
-		background-color: darkgray;
-	}
+}
+html::-webkit-scrollbar {
+	width: 8px;
+}
+html::-webkit-scrollbar-track {
+	margin-block: 2px;
+}
+html::-webkit-scrollbar-thumb {
+	background-color: silver;
+	border: 1px solid lightgray;
+	border-radius: 4px;
+}
+html::-webkit-scrollbar-thumb:hover {
+	background-color: darkgray;
 }
 
 .card {
