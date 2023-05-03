@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import Swiper from 'swiper';
+	import Swiper, { FreeMode } from 'swiper';
 	import 'swiper/css';
+	import type { FreeModeOptions } from 'swiper/types/modules/free-mode';
 	import { fly } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
 	import Fa from 'svelte-fa/src/fa.svelte';
@@ -53,6 +54,7 @@
 
 	function initSwiper() {
 		swiper = new Swiper('.swiper', {
+			modules: [FreeMode],
 			spaceBetween: 16,
 			navigation: {
 				nextEl: '.swiper-button-next',
@@ -60,10 +62,35 @@
 			},
 		});
 
+		swiper.on('slideChange', function () {
+			isSwiperAtBeginning = swiper.isBeginning;
+			isSwiperAtEnd = swiper.isEnd;
+		});
+
+		const isMouseDevice  = window.matchMedia("(pointer: fine)");
+		let swiperPaddings: string;
+		if (isMouseDevice.matches) {
+			shouldShowSwiperButtons = true;
+			swiperPaddings = '64px';
+		} else {
+			shouldShowSwiperButtons = false;
+			swiperPaddings = '32px';
+			swiper.params.slidesPerGroup = 1;
+			const options: FreeModeOptions = {
+				enabled: true,
+				momentum: true,
+				momentumBounce: true,
+				momentumBounceRatio: 1,
+				momentumRatio: 0.5,
+				momentumVelocityRatio: 1,
+			};
+			swiper.params.freeMode = options;
+		}
+		document.documentElement.style.setProperty('--swiper-paddings', swiperPaddings);
+
 		const smBreakpoint = window.matchMedia("(width < 640px)");
 		const mdBreakpoint = window.matchMedia("(width < 1024px)");
-		const isMouseDevice  = window.matchMedia("(pointer: fine)");
-		const setSlidesPerView = () => {
+		const updateSwiper = () => {
 			let categoriesPerView: number;
 			if (smBreakpoint.matches) {
 				categoriesPerView = 2;
@@ -74,26 +101,10 @@
 			}
 			swiper.params.slidesPerView = categoriesPerView;
 			swiper.params.slidesPerGroup = categoriesPerView;
-
-			let swiperPaddings: string;
-			if (isMouseDevice.matches) {
-				shouldShowSwiperButtons = true;
-				swiperPaddings = '64px';
-			} else {
-				shouldShowSwiperButtons = false;
-				swiperPaddings = '32px';
-				swiper.params.slidesPerGroup = 1;
-			}
-			document.documentElement.style.setProperty('--swiper-paddings', swiperPaddings);
 		};
-		smBreakpoint.addEventListener("change", setSlidesPerView);
-		mdBreakpoint.addEventListener("change", setSlidesPerView);
-		setSlidesPerView();
-
-		swiper.on('slideChange', function () {
-			isSwiperAtBeginning = swiper.isBeginning;
-			isSwiperAtEnd = swiper.isEnd;
-		});
+		smBreakpoint.addEventListener("change", updateSwiper);
+		mdBreakpoint.addEventListener("change", updateSwiper);
+		updateSwiper();
 	}
 </script>
 
