@@ -11,7 +11,7 @@
 
 <button
 	type="button"
-	class="card"
+	class="category card"
 	class:selected={isSelected}
 	on:click={onClick}
 >
@@ -23,7 +23,7 @@
 
 <style lang="scss">
 
-	button {
+	.category {
 		width: 100%;
 		padding: 1rem 0;
 		border: none;
