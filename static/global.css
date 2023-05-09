@@ -1,4 +1,9 @@
+
 :root {
+	--color-primary: #0772A1;
+}
+
+body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   background-color: #E9ECF5;
@@ -10,6 +15,11 @@ body, h1, h2, h3, h4 {
 
 p {
 	margin-top: 0;
+}
+
+/* SvelteUI */
+.svelteui-Badge-root.filled {
+	background-color: var(--color-primary) !important;
 }
 
 /* Custom Scrollbar */

@@ -85,14 +85,14 @@
 	}
 
 	.gradient-left {
-		background: linear-gradient(to left, transparent, #0772A1);
+		background: linear-gradient(to left, transparent, var(--color-primary));
 		left: calc(var(--swiper-paddings) * -1);
 		justify-content: left;
 		padding-left: 1.5rem;
 	}
 
 	.gradient-right {
-		background: linear-gradient(to right, transparent, #0772A1);
+		background: linear-gradient(to right, transparent, var(--color-primary));
 		right: calc(var(--swiper-paddings) * -1);
 		justify-content: right;
 		padding-right: 1.5rem;

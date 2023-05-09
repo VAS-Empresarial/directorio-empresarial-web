@@ -4,6 +4,7 @@
 	import { faGlobe, faPhone, type IconDefinition } from '@fortawesome/free-solid-svg-icons';
 	import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 	import { faWhatsapp, faFacebookF, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
+	import { Badge } from '@svelteuidev/core';
 	import type { Business } from '../lib/interfaces/Business';
 	import { SocialMedia } from '../lib/interfaces/SocialMedia';
 
@@ -57,13 +58,19 @@
 <article class="container card">
 	<header>
 		<img class="logo" src={business.logo.sizes?.thumbnail.url} alt="Logo de la empresa">
-		<h3>{business.name}</h3>
+		<div>
+			<h3>{business.name}</h3>
+			<Badge color="blue" radius="sm" variant="filled">{business.service.name}</Badge>
+		</div>
 	</header>
 	<img class="image" src={business.image.sizes?.card.url || business.image.url} alt="Imagen de la empresa">
 	<div class="card__body">
 		{business.description}
 	</div>
-	<footer class="social-media">
+	<footer
+		class="social-media"
+		class:six-icons={Object.keys(business.socialMedia).length == 6}
+	>
 		{#each Object.entries(business.socialMedia) as [socialMediaKey, socialMediaLink]}
 			{@const iconData = getIconDataBySocialMediaKey(socialMediaKey)}
 			<a href={(iconData.linkPrefix || '') + socialMediaLink} class={socialMediaKey}>
@@ -135,6 +142,10 @@
 
 		:global(.svelte-fa-layers) {
 			width: 1em !important;
+		}
+
+		&.six-icons {
+			gap: min(0.5em, calc((100% - 44px*6)/5));
 		}
 	}
 </style>

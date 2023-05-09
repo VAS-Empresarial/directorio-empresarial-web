@@ -106,7 +106,7 @@
 
 	.categories {
 		min-height: 114px;
-		background-color: #0772A1;
+		background-color: var(--color-primary);
 		position: sticky;
 		top: 0;
     	z-index: 1;
