@@ -124,4 +124,10 @@
 			outline: 0;
 		}
 	}
+
+	// Remove the shadow from Categories outside of the current slidesPerView
+	:global(.swiper-slide-prev .card),
+	:global(.swiper-slide-active + * + * + * + * + * + * .card) {
+		box-shadow: none;
+	}
 </style>

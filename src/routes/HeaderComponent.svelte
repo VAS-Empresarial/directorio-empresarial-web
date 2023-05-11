@@ -1,7 +1,7 @@
 <header>
 	<nav>
-		<a href="#">Sobre nosotros</a>
-		<a href="#">Contacto</a>
+		<a href="/">Sobre nosotros</a>
+		<a href="/">Contacto</a>
 	</nav>
 	<div>
 		<img
@@ -45,6 +45,7 @@
 				padding-block: 0.5rem;
 				margin-inline: 1rem;
 				position: relative;
+				-webkit-tap-highlight-color: transparent;
 
 				&::after {
 					content: "";
