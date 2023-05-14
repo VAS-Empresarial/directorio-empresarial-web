@@ -1,11 +1,14 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { SvelteComponent, onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
 	import type { PageData } from './$types';
-	import type { Category } from '../lib/interfaces/Category';
-	import type { Business } from '../lib/interfaces/Business';
+	import type { Category } from '$lib/interfaces/Category';
+	import type { Business } from '$lib/interfaces/Business';
+	import { selectedCategory } from '$lib/stores';
+	import { allCategoriesItem } from '$lib/constants';
 	import HeaderComponent from './HeaderComponent.svelte';
+	import CategoriesDropdownComponent from './CategoriesDropdownComponent.svelte';
 	import SwiperContainerComponent from './SwiperContainerComponent.svelte';
 	import CategoriesHorizontalScrollingComponent from './CategoriesHorizontalScrollingComponent.svelte';
 	import CategoryComponent from './CategoryComponent.svelte';
@@ -15,29 +18,10 @@
 
 	let { categories, businesses } = data;
 	let isMouseDevice: boolean;
-	// `isSmallDevice` is for future implementation of the conditional Categories dropdown on small devices
-	let isSmallDevice = false;
+	let isSmallDevice: boolean;
 	let updatedCategories: Category[] = [];
-	let selectedCategory: Category;
 	let filteredBusinesses: Business[] = [];
-
-	const allCategoriesItem: Category = {
-		id: '',
-		name: 'Todos',
-		icon: 'faStar',
-		displayOrder: 0,
-	}
-
-	function handleCategorySelection(category: Category) {
-		selectedCategory = category;
-
-		if (category === allCategoriesItem) {
-			filteredBusinesses = [...businesses];
-			return;
-		}
-
-		filteredBusinesses = businesses.filter(business => business.service.category.id === category.id);
-	}
+	let categoriesContainerComponent: typeof SvelteComponent;
 
 	onMount(() => {
 		const mouseDeviceMedia  = window.matchMedia("(pointer: fine)");
@@ -48,33 +32,61 @@
 			isSmallDevice = smBreakpoint.matches;
 		};
 		smBreakpoint.addEventListener("change", onDeviceSizeChange);
+		onDeviceSizeChange(); // Set the initial value
 
 		updatedCategories = [
 			allCategoriesItem,
 			...categories
 		];
-		handleCategorySelection(allCategoriesItem);
+
+		$selectedCategory = allCategoriesItem;
 	});
+
+	selectedCategory.subscribe(category => {
+		// Exit if this is the initial run before the real Category selection
+		if (updatedCategories.length === 0) {
+			return;
+		}
+
+		if (category === allCategoriesItem) {
+			filteredBusinesses = [...businesses];
+			return;
+		}
+
+		filteredBusinesses = businesses.filter(business => business.service.category.id === category.id);
+	});
+
+	$: if (isSmallDevice) {
+		categoriesContainerComponent = CategoriesDropdownComponent;
+	} else if (isMouseDevice) {
+		categoriesContainerComponent = SwiperContainerComponent;
+	} else {
+		categoriesContainerComponent = CategoriesHorizontalScrollingComponent;
+	}
 </script>
 
 <main>
 	<HeaderComponent />
 
 	<div class="categories">
-		<svelte:component this={isMouseDevice ? SwiperContainerComponent : CategoriesHorizontalScrollingComponent}>
-			{#each updatedCategories as category, index}
-				<div
-					class={isMouseDevice ? 'swiper-slide' : 'category-wrapper'}
-					in:fly={{ x: 400, duration: 500, delay: 50 * index }}
-				>
-					<CategoryComponent
-						{category}
-						isSelected={selectedCategory === category}
-						onClick={() => handleCategorySelection(category)}
-					/>
-				</div>
-			{/each}
-		</svelte:component>
+		{#if isSmallDevice}
+			<CategoriesDropdownComponent categories={updatedCategories} />
+		{:else}
+			<svelte:component this={categoriesContainerComponent}>
+				{#each updatedCategories as category, index}
+					<div
+						class={isMouseDevice ? 'swiper-slide' : 'category-wrapper'}
+						in:fly={{ x: 400, duration: 500, delay: 50 * index }}
+					>
+						<CategoryComponent
+							{category}
+							isSelected={$selectedCategory === category}
+							onClick={() => $selectedCategory = category}
+						/>
+					</div>
+				{/each}
+			</svelte:component>
+		{/if}
 	</div>
 
 	<div class="businesses">
@@ -94,18 +106,21 @@
 	:root {
 		--container-width: 1280px;
 		@media (max-width: 640px) {
-		--business-columns: 1;
+			--category-min-height: 70px;
+			--business-columns: 1;
 		}
 		@media (min-width: 640px) {
-		--business-columns: 2;
+			--category-min-height: 114px;
+			--business-columns: 2;
 		}
 		@media (min-width: 1024px) {
-		--business-columns: 3;
+			--category-min-height: 114px;
+			--business-columns: 3;
 		}
 	}
 
 	.categories {
-		min-height: 114px;
+		min-height: var(--category-min-height);
 		background-color: var(--color-primary);
 		position: sticky;
 		top: 0;
@@ -115,7 +130,7 @@
 	.businesses {
 		max-width: var(--container-width);
 		margin-inline: auto;
-		padding: 1.5rem;
+		padding: var(--section-padding);
 		display: grid;
 		gap: 1rem;
 		grid-template-columns: repeat(var(--business-columns), minmax(0, 1fr));

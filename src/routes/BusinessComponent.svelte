@@ -120,7 +120,7 @@
 		gap: 0.5em;
 
 		a {
-			border: 2px solid #ccc;
+			border: var(--border-width) solid var(--border-color);
 			border-radius: 50%;
 	
 			&:hover {

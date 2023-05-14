@@ -40,7 +40,7 @@
 			cursor: default;
 
 			:global(svg path) {
-				fill: #D8AA2B;
+				fill: var(--color-accent);
 			}
 		}
 
