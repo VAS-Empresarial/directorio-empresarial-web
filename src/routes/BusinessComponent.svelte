@@ -58,8 +58,8 @@
 <article class="container card">
 	<header>
 		<img class="logo" src={business.logo.sizes?.thumbnail.url} alt="Logo de la empresa">
-		<div>
-			<h3>{business.name}</h3>
+		<div class="title-container">
+			<h3 class="title">{business.name}</h3>
 			<Badge color="blue" radius="sm" variant="filled">{business.service.name}</Badge>
 		</div>
 	</header>
@@ -83,6 +83,18 @@
 </article>
 
 <style lang="scss">
+	:root {
+		@media (max-width: 640px) {
+			--title-font-size: 16px;
+		}
+		@media (min-width: 640px) {
+			--title-font-size: 17px;
+		}
+		@media (min-width: 1024px) {
+			--title-font-size: 18px;
+		}
+	}
+
 	.container {
 		background-color: white;
 		display: flex;
@@ -101,6 +113,15 @@
 		height: 4rem;
 		border-radius: 50%;
 		margin-right: 1rem;
+	}
+
+	.title-container {
+		// Trick to allow long titles to grow vertically without affecting the layout
+		margin-block: -8px;
+	}
+
+	.title {
+		font-size: var(--title-font-size);
 	}
 
 	.image {
