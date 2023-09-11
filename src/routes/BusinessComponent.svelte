@@ -5,8 +5,8 @@
 	import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 	import { faWhatsapp, faFacebookF, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 	import { Badge } from '@svelteuidev/core';
-	import type { Business } from '../lib/interfaces/Business';
-	import { SocialMedia } from '../lib/interfaces/SocialMedia';
+	import type { Business } from '../lib/types/Business';
+	import { SocialMedia } from '../lib/types/SocialMedia';
 
 	export let business: Business;
 
@@ -59,7 +59,7 @@
 	<header>
 		<img class="logo" src={business.logo.sizes?.thumbnail.url} alt="Logo de la empresa">
 		<div class="title-container">
-			<h3 class="title">{business.name}</h3>
+			<h3 class="title">{business?.name}</h3>
 			<Badge color="blue" radius="sm" variant="filled">{business.service.name}</Badge>
 		</div>
 	</header>

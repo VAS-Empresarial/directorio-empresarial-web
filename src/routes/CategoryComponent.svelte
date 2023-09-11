@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Fa from 'svelte-fa/src/fa.svelte';
 	import { fas } from '@fortawesome/free-solid-svg-icons';
-	import type { Category } from '$lib/interfaces/Category';
+	import type { Category } from '$lib/types/Category';
 
 	export let category: Category;
 	export let isSelected: boolean = false;

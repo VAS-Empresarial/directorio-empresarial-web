@@ -3,7 +3,7 @@
 	import Fa from 'svelte-fa/src/fa.svelte';
 	import { fas, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 	import { selectedCategory } from '$lib/stores';
-	import type { Category } from '$lib/interfaces/Category';
+	import type { Category } from '$lib/types/Category';
 
 	export let categories: Category[];
 

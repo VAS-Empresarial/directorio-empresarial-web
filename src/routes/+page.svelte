@@ -3,8 +3,8 @@
 	import { fly } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
 	import type { PageData } from './$types';
-	import type { Category } from '$lib/interfaces/Category';
-	import type { Business } from '$lib/interfaces/Business';
+	import type { Category } from '$lib/types/Category';
+	import type { Business } from '$lib/types/Business';
 	import { selectedCategory } from '$lib/stores';
 	import { allCategoriesItem } from '$lib/constants';
 	import HeaderComponent from './HeaderComponent.svelte';
@@ -13,10 +13,12 @@
 	import CategoriesHorizontalScrollingComponent from './CategoriesHorizontalScrollingComponent.svelte';
 	import CategoryComponent from './CategoryComponent.svelte';
 	import BusinessComponent from './BusinessComponent.svelte';
+	import CarouselComponent from './CarouselComponent.svelte';
+	import ServiceComponent from './ServiceComponent.svelte';
 
     export let data: PageData;
+	let { categories } = data;
 
-	let { categories, businesses } = data;
 	let isMouseDevice: boolean;
 	let isSmallDevice: boolean;
 	let updatedCategories: Category[] = [];
@@ -24,51 +26,74 @@
 	let categoriesContainerComponent: typeof SvelteComponent;
 
 	onMount(() => {
-		const mouseDeviceMedia  = window.matchMedia("(pointer: fine)");
-		isMouseDevice = mouseDeviceMedia.matches;
+		console.log('categories', data.categories);
 
-		const smBreakpoint = window.matchMedia("(width < 640px)");
-		const onDeviceSizeChange = () => {
-			isSmallDevice = smBreakpoint.matches;
-		};
-		smBreakpoint.addEventListener("change", onDeviceSizeChange);
-		onDeviceSizeChange(); // Set the initial value
+		// const mouseDeviceMedia  = window.matchMedia("(pointer: fine)");
+		// isMouseDevice = mouseDeviceMedia.matches;
 
-		updatedCategories = [
-			allCategoriesItem,
-			...categories
-		];
+		// const smBreakpoint = window.matchMedia("(width < 640px)");
+		// const onDeviceSizeChange = () => {
+		// 	isSmallDevice = smBreakpoint.matches;
+		// };
+		// smBreakpoint.addEventListener("change", onDeviceSizeChange);
+		// onDeviceSizeChange(); // Set the initial value
 
-		$selectedCategory = allCategoriesItem;
+		// updatedCategories = [
+		// 	allCategoriesItem,
+		// 	//...categories
+		// ];
+
+		// $selectedCategory = allCategoriesItem;
 	});
 
-	selectedCategory.subscribe(category => {
-		// Exit if this is the initial run before the real Category selection
-		if (updatedCategories.length === 0) {
-			return;
-		}
+	// selectedCategory.subscribe(category => {
+	// 	// Exit if this is the initial run before the real Category selection
+	// 	if (updatedCategories.length === 0) {
+	// 		return;
+	// 	}
 
-		if (category === allCategoriesItem) {
-			filteredBusinesses = [...businesses];
-			return;
-		}
+	// 	if (category === allCategoriesItem) {
+	// 		filteredBusinesses = [
+	// 			//...businesses
+	// 		];
+	// 		console.log('filteredBusinesses', filteredBusinesses);
+	// 		return;
+	// 	}
 
-		filteredBusinesses = businesses.filter(business => business.service.category.id === category.id);
-	});
+	// 	//filteredBusinesses = businesses.filter(business => business.service.category.id === category.id);
+	// });
 
-	$: if (isSmallDevice) {
-		categoriesContainerComponent = CategoriesDropdownComponent;
-	} else if (isMouseDevice) {
-		categoriesContainerComponent = SwiperContainerComponent;
-	} else {
-		categoriesContainerComponent = CategoriesHorizontalScrollingComponent;
-	}
+	// $: if (isSmallDevice) {
+	// 	categoriesContainerComponent = CategoriesDropdownComponent;
+	// } else if (isMouseDevice) {
+	// 	categoriesContainerComponent = SwiperContainerComponent;
+	// } else {
+	// 	categoriesContainerComponent = CategoriesHorizontalScrollingComponent;
+	// }
 </script>
 
 <main>
 	<HeaderComponent />
 
-	<div class="categories">
+	{#each categories as category}
+		<section class="container">
+			<h2>{category.name}</h2>
+			<CarouselComponent>
+				{#each category.services as service, index}
+					<div
+						class={isMouseDevice ? 'swiper-slide' : 'item-wrapper item-shadow'}
+						in:fly={{ x: 400, duration: 500, delay: 50 * index }}
+					>
+						<ServiceComponent
+							{service}
+						/>
+					</div>
+				{/each}
+			</CarouselComponent>
+		</section>
+	{/each}
+
+	<!-- <div class="categories">
 		{#if isSmallDevice}
 			<CategoriesDropdownComponent categories={updatedCategories} />
 		{:else}
@@ -87,9 +112,9 @@
 				{/each}
 			</svelte:component>
 		{/if}
-	</div>
+	</div> -->
 
-	<div class="businesses">
+	<!-- <div class="businesses">
 		{#each filteredBusinesses as business (business)}
 			<div
 				in:fly={{ x: 200, duration: 500 }}
@@ -99,7 +124,7 @@
 				<BusinessComponent {business} />
 			</div>
 		{/each}
-	</div>
+	</div> -->
 </main>
 
 <style lang="scss">
@@ -119,6 +144,16 @@
 		}
 	}
 
+	.item-wrapper {
+		transition: all 150ms ease;
+
+		&:hover {
+			box-shadow: 0 12px 18px -4px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+			transform: translateY(-0.25rem);
+			transition: all 150ms ease;
+		}
+	}
+
 	.categories {
 		min-height: var(--category-min-height);
 		background-color: var(--color-primary);
@@ -128,8 +163,6 @@
 	}
 
 	.businesses {
-		max-width: var(--container-width);
-		margin-inline: auto;
 		padding: var(--section-padding);
 		display: grid;
 		gap: 1rem;
