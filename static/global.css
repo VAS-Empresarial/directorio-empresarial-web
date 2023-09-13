@@ -5,14 +5,14 @@
 	--color-primary-light: #1E8EC5;
 	--color-accent: #D3A92D;
 	--color-accent-rgb: 211, 169, 45;
+	--color-accent-light: hsl(45, 75%, 60%); /* Original has 65% saturation and 50% lightness */
+	--color-accent-darker: hsl(45, 65%, 45%); /* Original has lightness of 50% */
 	--color-gray: #D4DEE7;
 	--color-gray-rgb: 212, 222, 231;
 	--opacity-background: 0.15;
 	--border-width: 2px;
 	--border-color: #ccc;
 	--border-radius: .25rem;
-	--homepage-padding: 1.5rem;
-	--homepage-item-gap: 0.75rem;
 
 	@media (max-width: 640px) {
 		--homepage-padding: 1.2rem;
@@ -95,7 +95,7 @@ html::-webkit-scrollbar-thumb:hover {
 	background-color: darkgray;
 }
 
-.item-shadow {
+.shadow {
 	box-shadow: 0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -2px rgba(0,0,0,.05);
 }
 

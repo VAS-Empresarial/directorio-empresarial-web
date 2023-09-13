@@ -1,4 +1,12 @@
-<header>
+<script>
+	import { Burger, Collapse } from '@svelteuidev/core';
+	import Fa from 'svelte-fa/src/fa.svelte';
+	import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+
+    let isNavMenuOpen = false;
+</script>
+
+<header class="shadow">
 	<div class="container">
 		<div class="logo">
 			<img
@@ -13,11 +21,32 @@
 				<div class="text-empresarial">EMPRESARIAL</div>
 			</div>
 		</div>
-		<nav>
+		<Burger
+			class="burger-button"
+			opened={isNavMenuOpen}
+			on:click={() => (isNavMenuOpen = !isNavMenuOpen)}
+		/>
+		<nav class="nav-bar">
 			<a href="/">Sobre nosotros</a>
 			<a href="/">Contacto</a>
 		</nav>
 	</div>
+	<Collapse open={isNavMenuOpen} class="toggler">
+		<nav class="nav-menu">
+			<a href="/about">
+				<div class="nav-item container">
+					<div>Sobre nosotros</div>
+					<Fa class="icon" icon={faArrowRight} size="lg" />
+				</div>
+			</a>
+			<a href="/contact">
+				<div class="nav-item container">
+					<div>Contacto</div>
+					<Fa class="icon" icon={faArrowRight} size="lg" />
+				</div>
+			</a>
+		</nav>
+	</Collapse>
 </header>
 
 <style lang="scss">
@@ -39,26 +68,14 @@
 	}
 
 	header {
-		position: relative;
-
-		&::before {
-			content: "";
-			position: absolute;
-			inset: 0;
-			background-image:
-				linear-gradient(rgb(0 0 0 / 0.85), rgb(0 0 0 / 0.85)), 
-				url(/images/rodrigo-dos-reis-ct.jpg);
-			background-size: cover;
-			background-position: center;
-			opacity: 0.9;
-			z-index: -1;
-		}
+		background-color: white;
 	}
 
 	.container {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+    	flex-wrap: wrap;
 		padding-block: 0.5rem;
 	}
 
@@ -68,7 +85,6 @@
 		font-family: sans-serif;
 		font-weight: 700;
 		line-height: 1;
-		filter: drop-shadow(0 0 8px black);
 
 		img {
 			width: calc(var(--scale-factor) * 80px);
@@ -95,19 +111,46 @@
 		}
 
 		.text-empresarial {
-			color: var(--color-accent);
+			color: var(--color-accent-darker);
 			font-size: calc(var(--scale-factor) * 29px);
 		}
 	}
 
-	nav {
+	:global(.toggler) {
+		width: 100%;
+	}
+
+	@media (min-width: 640px) {
+		:global(.burger-button),
+		:global(.toggler) {
+			display: none;
+		}
+
+		nav.nav-bar {
+			display: flex;
+		}
+	}
+
+	.nav-menu .nav-item {
+		border-top: 1px solid rgba(var(--color-gray-rgb), 0.8);
+		padding-block: 1rem;
 		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-weight: bold;
+
+		:global(svg path) {
+			fill: var(--color-accent);
+		}
+	}
+
+	.nav-bar {
+		display: none;
 		justify-content: flex-end;
 		padding: 0.5rem 1rem;
 
 		a {
 			text-decoration: none;
-			color: white;
 			font-size: var(--a-font-size);
 			font-weight: bold;
 			white-space: nowrap;
@@ -119,11 +162,11 @@
 			&::after {
 				content: "";
 				width: 100%;
-				height: 2px;
+				height: 3px;
 				position: absolute;
 				bottom: 0;
 				left: 0;
-				background-color: white;
+				background-color: var(--color-accent);
 				opacity: 0;
 				transition: opacity 300ms ease;
 

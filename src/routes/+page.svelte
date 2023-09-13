@@ -15,6 +15,7 @@
 	import BusinessComponent from './BusinessComponent.svelte';
 	import CarouselComponent from './CarouselComponent.svelte';
 	import ServiceComponent from './ServiceComponent.svelte';
+  import WelcomeBox from './WelcomeBox.svelte';
 
     export let data: PageData;
 	let { categories } = data;
@@ -75,13 +76,15 @@
 <main>
 	<HeaderComponent />
 
+	<WelcomeBox />
+
 	{#each categories as category}
 		<section class="container">
 			<h2>{category.name}</h2>
 			<CarouselComponent>
 				{#each category.services as service, index}
 					<div
-						class={isMouseDevice ? 'swiper-slide' : 'item-wrapper item-shadow'}
+						class={isMouseDevice ? 'swiper-slide' : 'item-wrapper shadow'}
 						in:fly={{ x: 400, duration: 500, delay: 50 * index }}
 					>
 						<ServiceComponent

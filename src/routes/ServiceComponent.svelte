@@ -99,7 +99,7 @@
 			font-size: 11px;
 		}
 		@media (min-width: 640px) {
-			font-size: 11px;
+			font-size: 13px;
 		}
 		color: rgba(0, 0, 0, .8);
 	}
