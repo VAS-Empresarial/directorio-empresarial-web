@@ -27,7 +27,7 @@
 	}
 
 	:global(.item-wrapper) {
-		width: calc((100vw - var(--homepage-padding)*2 - var(--homepage-item-gap)*(var(--categories-per-view) - 1))/var(--categories-per-view));
+		width: calc((100% - var(--homepage-padding)*2 - var(--homepage-item-gap)*(var(--categories-per-view) - 1))/var(--categories-per-view));
 		flex-shrink: 0;
 
 		&:first-child {

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { Burger, Collapse } from '@svelteuidev/core';
 	import Fa from 'svelte-fa/src/fa.svelte';
 	import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
@@ -8,38 +8,46 @@
 
 <header class="shadow">
 	<div class="container">
-		<div class="logo">
-			<img
-				src="/images/Logo Vida Abundante.png"
-				alt="Logo Vida Abundante"
-			>
-			<div>
+		<a href="/">
+			<div class="logo">
+				<img
+					src="/images/Logo Vida Abundante.png"
+					alt="Logo Vida Abundante"
+				>
 				<div>
-					<span class="text-vida">VIDA</span>
-					<span class="text-abundante">ABUNDANTE</span>
+					<div>
+						<span class="text-vida">VIDA</span>
+						<span class="text-abundante">ABUNDANTE</span>
+					</div>
+					<div class="text-empresarial">EMPRESARIAL</div>
 				</div>
-				<div class="text-empresarial">EMPRESARIAL</div>
 			</div>
-		</div>
+		</a>
 		<Burger
 			class="burger-button"
 			opened={isNavMenuOpen}
 			on:click={() => (isNavMenuOpen = !isNavMenuOpen)}
 		/>
 		<nav class="nav-bar">
-			<a href="/">Sobre nosotros</a>
-			<a href="/">Contacto</a>
+			<a href="/sobre-nosotros">Sobre nosotros</a>
+			<a href="/contacto">Contacto</a>
 		</nav>
 	</div>
 	<Collapse open={isNavMenuOpen} class="toggler">
 		<nav class="nav-menu">
-			<a href="/about">
+			<a
+				href="/sobre-nosotros"
+				on:click={() => (isNavMenuOpen = false)}
+			>
 				<div class="nav-item container">
 					<div>Sobre nosotros</div>
 					<Fa class="icon" icon={faArrowRight} size="lg" />
 				</div>
 			</a>
-			<a href="/contact">
+			<a
+				href="/contacto"
+				on:click={() => (isNavMenuOpen = false)}
+			>
 				<div class="nav-item container">
 					<div>Contacto</div>
 					<Fa class="icon" icon={faArrowRight} size="lg" />
@@ -68,6 +76,7 @@
 	}
 
 	header {
+		position: relative;
 		background-color: white;
 	}
 
@@ -132,7 +141,7 @@
 	}
 
 	.nav-menu .nav-item {
-		border-top: 1px solid rgba(var(--color-gray-rgb), 0.8);
+		border-top: 1px solid var(--color-light-gray);
 		padding-block: 1rem;
 		display: flex;
 		justify-content: space-between;

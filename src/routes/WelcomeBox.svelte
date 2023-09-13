@@ -1,7 +1,5 @@
-<div class="container">
-	<div class="welcome-box">
-		Bienvenido al directorio de<br><em>servicios</em> y <em>emprendimientos</em> de<br>la red de iglesias <em>Vida Abundante</em>
-	</div>
+<div class="welcome-box">
+	Bienvenido al directorio de<br><em>servicios</em> y <em>emprendimientos</em> de<br>la iglesia <em>Vida Abundante del Sur</em>
 </div>
 
 <style lang="scss">
