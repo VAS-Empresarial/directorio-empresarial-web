@@ -30,7 +30,7 @@
 			>
 				<div class="nav-item container">
 					<div>Sobre nosotros</div>
-					<Fa icon={faArrowRight} size="lg" />
+					<Fa icon={faArrowRight} />
 				</div>
 			</a>
 			<a
@@ -39,7 +39,7 @@
 			>
 				<div class="nav-item container">
 					<div>Contacto</div>
-					<Fa class="icon" icon={faArrowRight} size="lg" />
+					<Fa class="icon" icon={faArrowRight} />
 				</div>
 			</a>
 		</nav>
@@ -96,7 +96,11 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		font-weight: bold;
+		font-weight: 600;
+
+		:global(svg) {
+			font-size: 1.25em;
+		}
 
 		:global(svg path) {
 			fill: var(--color-accent);
