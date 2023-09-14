@@ -1,16 +1,20 @@
 <script>
+	import Fa from 'svelte-fa/src/fa.svelte';
+	import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 	import LogoComponent from "./LogoComponent.svelte";
 </script>
 
 <footer>
 	<div class="container">
 		<LogoComponent white />
-		<div class="text">Vida Abundante Empresarial es un producto del grupo <a href="/sobre-nosotros">Excelencia</a> de la iglesia <a href="https://www.vas.cr">Vida Abundante del Sur</a></div>
-		<img
-			class="logo-VAS"
-			src="/images/Logo VAS - blanco.webp"
-			alt="Logo Vida Abundante del Sur"
-		>
+		<div class="text">Vida Abundante Empresarial es un producto del grupo <a href="/sobre-nosotros">Excelencia</a> de la iglesia <a href="https://www.vas.cr" target="_blank">Vida Abundante del Sur <Fa icon={faArrowUpRightFromSquare} size="sm" /></a></div>
+		<a href="https://www.vas.cr" target="_blank">
+			<img
+				class="logo-VAS"
+				src="/images/Logo VAS - blanco.webp"
+				alt="Logo Vida Abundante del Sur"
+			>
+		</a>
 	</div>
 </footer>
 
@@ -30,6 +34,16 @@
 			opacity: 0.9;
 			z-index: -1;
 		}
+
+		a {
+			font-weight: bold;
+			color: var(--color-accent-light);
+			white-space: nowrap;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
 	}
 
 	.container {
@@ -45,6 +59,9 @@
 	}
 
 	.text {
+		@media (max-width: 640px) {
+			font-size: 14px;
+		}
 		color: white;
 		text-align: center;
 		@media (max-width: 824px) {

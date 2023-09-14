@@ -30,7 +30,7 @@
 			>
 				<div class="nav-item container">
 					<div>Sobre nosotros</div>
-					<Fa class="icon" icon={faArrowRight} size="lg" />
+					<Fa icon={faArrowRight} size="lg" />
 				</div>
 			</a>
 			<a
