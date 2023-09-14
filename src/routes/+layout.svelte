@@ -10,3 +10,15 @@
 
 	<FooterComponent />
 </div>
+
+<style lang="scss">
+	.global-layout {
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	:global(main) {
+		flex: 1;
+	}
+</style>
