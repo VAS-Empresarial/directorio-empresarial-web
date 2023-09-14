@@ -2,6 +2,7 @@
 	import { Burger, Collapse } from '@svelteuidev/core';
 	import Fa from 'svelte-fa/src/fa.svelte';
 	import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+	import LogoComponent from './LogoComponent.svelte';
 
     let isNavMenuOpen = false;
 </script>
@@ -9,19 +10,7 @@
 <header class="shadow">
 	<div class="container">
 		<a href="/">
-			<div class="logo">
-				<img
-					src="/images/Logo Vida Abundante.png"
-					alt="Logo Vida Abundante"
-				>
-				<div>
-					<div>
-						<span class="text-vida">VIDA</span>
-						<span class="text-abundante">ABUNDANTE</span>
-					</div>
-					<div class="text-empresarial">EMPRESARIAL</div>
-				</div>
-			</div>
+			<LogoComponent />
 		</a>
 		<Burger
 			class="burger-button"
@@ -62,12 +51,10 @@
 		@media (max-width: 640px) {
 			--a-font-size: 12px;
 			--h1-font-size: 7vw;
-			--scale-factor: 0.75;
 		}
 		@media (min-width: 640px) {
 			--a-font-size: 14px;
 			--h1-font-size: 2.5rem;
-			--scale-factor: 1;
 		}
 		@media (min-width: 1024px) {
 			--a-font-size: 16px;
@@ -86,43 +73,6 @@
 		align-items: center;
     	flex-wrap: wrap;
 		padding-block: 0.5rem;
-	}
-
-	.logo {
-		display: flex;
-		align-items: center;
-		font-family: sans-serif;
-		font-weight: 700;
-		line-height: 1;
-
-		img {
-			width: calc(var(--scale-factor) * 80px);
-			margin-left: calc(var(--scale-factor) * -8px);
-		}
-
-		img + div {
-			margin-left: calc(var(--scale-factor) * -6px);
-			margin-top: calc(var(--scale-factor) * 4px);
-		}
-
-		.text-vida,
-		.text-abundante {
-			font-size: calc(var(--scale-factor) * 22px);
-			letter-spacing: calc(var(--scale-factor) * 1px);
-		}
-
-		.text-vida {
-			color: var(--color-primary);
-		}
-
-		.text-abundante {
-			color: var(--color-primary-light);
-		}
-
-		.text-empresarial {
-			color: var(--color-accent-darker);
-			font-size: calc(var(--scale-factor) * 29px);
-		}
 	}
 
 	:global(.toggler) {
