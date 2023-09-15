@@ -5,16 +5,16 @@
 <style lang="scss">
 	:root {
 		@media (max-width: 640px) {
-		--categories-per-view: 2.1;
+			--categories-per-view: 2.1;
 		}
 		@media (min-width: 640px) {
-		--categories-per-view: 3;
+			--categories-per-view: 3.05;
 		}
 		@media (min-width: 824px) {
-		--categories-per-view: 4;
+			--categories-per-view: 4.05;
 		}
 		@media (min-width: 1024px) {
-		--categories-per-view: 5;
+			--categories-per-view: 5.05;
 		}
 	}
 
