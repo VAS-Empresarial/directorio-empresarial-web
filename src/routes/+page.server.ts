@@ -1,8 +1,6 @@
 import type { PageServerLoad } from './$types';
 import axios, { AxiosError } from 'axios';
 import { PAYLOAD_BASE_URL } from '$env/static/private';
-import type { Category } from '$lib/types/Category';
-import type { Business } from '$lib/types/Business';
 import type { HomepageCategory } from '$lib/types/Homepage';
 
 // Axios instance with default headers

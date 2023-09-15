@@ -5,7 +5,7 @@
 <style lang="scss">
 	:root {
 		@media (max-width: 640px) {
-		--categories-per-view: 2;
+		--categories-per-view: 2.1;
 		}
 		@media (min-width: 640px) {
 		--categories-per-view: 3;
@@ -24,6 +24,12 @@
   		overflow-x: auto;
 		gap: var(--homepage-item-gap);
 		padding-block: 1rem 2rem;
+
+		// Hide scrollbar
+		scrollbar-width: none; // For Firefox
+		&::-webkit-scrollbar { // For Chrome, Safari and Opera
+			display: none;
+		}
 	}
 
 	:global(.item-wrapper) {

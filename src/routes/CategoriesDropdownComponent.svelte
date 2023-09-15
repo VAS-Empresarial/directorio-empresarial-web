@@ -35,6 +35,7 @@
 		opened={isModalOpen}
 		closeOnClickOutside={true}
 		closeOnEscape
+		centered
 		on:close={closeModal}
 	>
 		<div class="categories-container">

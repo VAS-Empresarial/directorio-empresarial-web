@@ -62,13 +62,16 @@
 		}
 	}
 
-	.item-wrapper {
-		transition: all 150ms ease;
-
-		&:hover {
-			box-shadow: 0 12px 18px -4px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-			transform: translateY(-0.25rem);
+	// Only for mouse devices (not touch devices)
+	@media (pointer: fine) {
+		.item-wrapper {
 			transition: all 150ms ease;
+
+			&:hover {
+				box-shadow: 0 12px 18px -4px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+				transform: translateY(-0.25rem);
+				transition: all 150ms ease;
+			}
 		}
 	}
 </style>
