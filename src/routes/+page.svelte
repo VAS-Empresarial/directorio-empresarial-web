@@ -8,10 +8,9 @@
     export let data: PageData;
 
 	let { categories } = data;
-
 </script>
 
-<main>
+<main class="light-gray-background">
 	<div class="container">
 		<WelcomeBox />
 	</div>
@@ -34,25 +33,6 @@
 </main>
 
 <style lang="scss">
-	:root {
-		@media (max-width: 640px) {
-			--category-min-height: 70px;
-			--business-columns: 1;
-		}
-		@media (min-width: 640px) {
-			--category-min-height: 114px;
-			--business-columns: 2;
-		}
-		@media (min-width: 1024px) {
-			--category-min-height: 114px;
-			--business-columns: 3;
-		}
-	}
-
-	main {
-		background-color: var(--color-light-gray);
-	}
-
 	:global(.welcome-box) {
 		@media (max-width: 640px) {
 			margin-bottom: 1.5rem;

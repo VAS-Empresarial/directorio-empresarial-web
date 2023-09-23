@@ -38,24 +38,7 @@
 	}
 
 	.icon-container {
-		display: grid;
-		place-items: center;
-		@media (max-width: 640px) {
-			width: 42px;
-			height: 42px;
-			:global(svg) {
-				font-size: 1.25em;
-			}
-		}
-		@media (min-width: 640px) {
-			width: 48px;
-			height: 48px;
-			:global(svg) {
-				font-size: 1.5em;
-			}
-		}
 		background-color: rgba(var(--color-primary-rgb), var(--opacity-background));
-		border-radius: 50%;
 		margin-bottom: 0.5rem;
 
 		:global(svg path) {

@@ -1,14 +1,27 @@
 <script lang="ts">
+	import { getContext } from 'svelte';
 	import Fa from 'svelte-fa/src/fa.svelte';
 	import FaLayers from 'svelte-fa/src/fa-layers.svelte';
-	import { faGlobe, faPhone, type IconDefinition } from '@fortawesome/free-solid-svg-icons';
+	import { faGlobe, faPhone, fas, type IconDefinition } from '@fortawesome/free-solid-svg-icons';
 	import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 	import { faWhatsapp, faFacebookF, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 	import { Badge } from '@svelteuidev/core';
+	import type { Service } from '$lib/types/Service';
 	import type { Business } from '../lib/types/Business';
 	import { SocialMedia } from '../lib/types/SocialMedia';
 
 	export let business: Business;
+
+	const service = getContext<Service>('service');
+
+	function generateHueFromId(id: string): number {
+		const numericalValue = parseInt(id.slice(-3), 16); // The id is HEX based
+		const maxValue = 4095; // Corresponds to a substring of fff
+
+		const hue = numericalValue / maxValue * 360; // Get a Hue value from 0 to 360
+
+		return hue;
+	}
 
 	interface SocialMediaIconData {
 		icon: IconDefinition,
@@ -55,17 +68,42 @@
 	}
 </script>
 
-<article class="container card">
+<div class="business card shadow">
 	<header>
-		<img class="logo" src={business.logo.sizes?.thumbnail.url} alt="Logo de la empresa">
+		{#if business.logo}
+			<img class="logo" src={business.logo.sizes.thumbnail.url} alt="Logo de la empresa">
+		{:else}
+			<div class="logo fallback-logo">
+				<Fa class="icon" icon={fas[service.icon]} />
+			</div>
+		{/if}
 		<div class="title-container">
 			<h3 class="title">{business?.name}</h3>
-			<Badge color="blue" radius="sm" variant="filled">{business.service.name}</Badge>
+			<div class="services">
+				{#each business.services as service}
+					<Badge color="blue" radius="sm" variant="filled">{service.singularName}</Badge>
+				{/each}
+			</div>
 		</div>
 	</header>
-	<img class="image" src={business.image.sizes?.card.url || business.image.url} alt="Imagen de la empresa">
+	{#if business.image}
+		<img class="image" src={business.image.sizes.card.url || business.image?.url} alt="Imagen de la empresa">
+	{:else}
+		{@const hue = generateHueFromId(business.id)}
+		<div
+			class="image fallback-image"
+			style="background-image: linear-gradient(135deg, hsl({hue}, 35%, 75%), hsl({hue}, 35%, 65%));"
+		>
+			<Fa
+				class="icon"
+				icon={fas[service.icon]}
+				size="10x"
+				color="hsl({hue}, 35%, 75%)"
+			 />
+		</div>
+	{/if}
 	<div class="card__body">
-		{business.description}
+		{business.description || ''}
 	</div>
 	<footer
 		class="social-media"
@@ -80,7 +118,7 @@
 			</a>
 		{/each}
 	</footer>
-</article>
+</div>
 
 <style lang="scss">
 	:root {
@@ -95,7 +133,7 @@
 		}
 	}
 
-	.container {
+	.business {
 		background-color: white;
 		display: flex;
 		flex-direction: column;
@@ -109,10 +147,26 @@
 	}
 
 	.logo {
+		flex-shrink: 0;
 		width: 4rem;
 		height: 4rem;
+		background-color: teal;
 		border-radius: 50%;
 		margin-right: 1rem;
+	}
+
+	.fallback-logo {
+		display: grid;
+		place-items: center;
+		background-color: rgba(var(--color-primary-rgb), var(--opacity-background));
+
+		:global(.icon) {
+			font-size: 1.5em;
+		}
+
+		:global(svg path) {
+			fill: var(--color-primary);
+		}
 	}
 
 	.title-container {
@@ -122,12 +176,25 @@
 
 	.title {
 		font-size: var(--title-font-size);
+		line-height: 1.35;
+		margin-bottom: .25rem;
 	}
 
 	.image {
 		width: 100%;
 		height: 15rem;
 		object-fit: cover;
+	}
+
+	.fallback-image {
+		display: grid;
+		place-items: center;
+	}
+
+	.services {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem;
 	}
 
 	.card__body {
