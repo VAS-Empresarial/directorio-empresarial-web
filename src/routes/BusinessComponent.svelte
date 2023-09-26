@@ -15,8 +15,9 @@
 	const service = getContext<Service>('service');
 
 	function generateHueFromId(id: string): number {
-		const numericalValue = parseInt(id.slice(-3), 16); // The id is HEX based
-		const maxValue = 4095; // Corresponds to a substring of fff
+		// Generate the hue from the last 2 characters of the id
+		const numericalValue = parseInt(id.slice(-2), 16); // The id is HEX based
+		const maxValue = parseInt('ff', 16); // 255
 
 		const hue = numericalValue / maxValue * 360; // Get a Hue value from 0 to 360
 
