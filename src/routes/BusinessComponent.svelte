@@ -72,7 +72,12 @@
 <div class="business card shadow">
 	<header>
 		{#if business.logo}
-			<img class="logo" src={business.logo.sizes.thumbnail.url} alt="Logo de la empresa">
+			<img
+				class="logo"
+				src={business.logo.sizes.thumbnail.url}
+				alt="Logo de la empresa"
+				on:error={() => business.logo = undefined}
+			>
 		{:else}
 			<div class="logo fallback-logo">
 				<Fa class="icon" icon={fas[service.icon]} />
@@ -88,7 +93,12 @@
 		</div>
 	</header>
 	{#if business.image}
-		<img class="image" src={business.image.sizes.card.url || business.image?.url} alt="Imagen de la empresa">
+		<img
+			class="image"
+			src={business.image.sizes.card.url || business.image?.url}
+			alt="Imagen de la empresa"
+			on:error={() => business.image = undefined}
+		>
 	{:else}
 		{@const hue = generateHueFromId(business.id)}
 		<div
