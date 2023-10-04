@@ -7,8 +7,10 @@
 	--color-accent: #D3A92D;
 	--color-accent-rgb: 211, 169, 45;
 	--color-accent-light: hsl(45, 75%, 60%); /* Original has 65% saturation and 50% lightness */
-	--color-accent-darker: hsl(45, 65%, 45%); /* Original has lightness of 50% */
+	--color-accent-dark: hsl(45, 65%, 45%); /* Original has lightness of 50% */
 	--color-light-gray: #E9ECF5;
+	--color-light-gray-light: hsl(225, 38%, 98%); /* Original has lightness of 94% */
+	--color-light-gray-rgb: 233, 236, 245;
 	--opacity-background: 0.15;
 	--border-width: 2px;
 	--border-color: #ccc;
@@ -28,6 +30,11 @@
 		--homepage-item-gap: 0.75rem;
 		--homepage-service-padding: 1rem;
 		--section-padding: 1.5rem;
+	}
+}
+@media (pointer: fine) {
+	:root {
+		--homepage-padding: 5rem;
 	}
 }
 
@@ -157,6 +164,10 @@ html::-webkit-scrollbar-thumb:hover {
 
 .hidden {
 	visibility: hidden;
+}
+
+.removed {
+	display: none;
 }
 
 .light-gray-background {

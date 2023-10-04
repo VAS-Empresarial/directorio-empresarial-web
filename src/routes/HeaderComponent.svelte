@@ -14,6 +14,7 @@
 		</a>
 		<Burger
 			class="burger-button"
+			title="Menú de navegación"
 			opened={isNavMenuOpen}
 			on:click={() => (isNavMenuOpen = !isNavMenuOpen)}
 		/>

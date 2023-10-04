@@ -25,10 +25,9 @@
 	</div>
 
 	<section class="businesses container">
-		{#each businesses as business (business)}
+		{#each businesses as business, index}
 			<div
-				in:fly={{ x: 200, duration: 500 }}
-				animate:flip={{ duration: 500 }}
+				in:fly={{ x: 200, duration: 500, delay: 50 * index }}
 			>
 				<BusinessComponent {business} />
 			</div>

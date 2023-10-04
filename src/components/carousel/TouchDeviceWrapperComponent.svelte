@@ -1,5 +1,18 @@
-<div class="carousel-container">
-	<slot />
+<script lang="ts">
+	import { fly } from 'svelte/transition';
+
+	export let items: any[];
+</script>
+
+<div class="carousel">
+	{#each items as item, index}
+		<div
+			class="item-wrapper shadow"
+			in:fly={{ x: 200, duration: 500, delay: 50 * index }}
+		>
+			<slot {item} />
+		</div>
+	{/each}
 </div>
 
 <style lang="scss">
@@ -18,8 +31,8 @@
 		}
 	}
 
-	.carousel-container {
-		margin-inline: calc(-1*var(--homepage-padding));
+	.carousel {
+		margin-inline: calc(-1 * var(--homepage-padding));
 		display: flex;
   		overflow-x: auto;
 		gap: var(--homepage-item-gap);

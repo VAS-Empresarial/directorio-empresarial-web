@@ -56,7 +56,7 @@
 		}
 
 		.text-empresarial {
-			color: var(--color-accent-darker);
+			color: var(--color-accent-dark);
 			font-size: calc(var(--scale-factor) * 29px);
 		}
 
