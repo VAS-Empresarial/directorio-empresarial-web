@@ -63,6 +63,12 @@
 		}
 	}
 
+	@media (pointer: coarse) {
+		:global(.on-service-page) header {
+			display: none;
+		}
+	}
+
 	header {
 		position: relative;
 		background-color: white;

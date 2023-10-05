@@ -71,9 +71,7 @@
 <style lang="scss">
 	:root {
 		--slides-per-view: 5;
-		// Somehow, the following commented calc does not work to get the width of the card item
-		//--swiper-paddings: calc((100% - (var(--homepage-item-gap) * (var(--slides-per-view) - 1)))/var(--slides-per-view));
-		--swiper-paddings: 15rem;
+		--swiper-paddings: 214px; // The max size of a service card
 	}
 
 	.carousel {

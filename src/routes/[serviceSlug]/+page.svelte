@@ -54,6 +54,10 @@
 		align-items: center;
 		gap: 0.5rem;
 
+		@media (pointer: coarse) {
+			margin-left: -0.5rem;
+		}
+
 		.icon-container {
 			:global(svg path) {
 				fill: var(--color-accent);

@@ -54,7 +54,12 @@ body, h1, h2, h3, h4 {
 }
 
 main {
-	padding-block: var(--homepage-padding);
+	@media (pointer: coarse) {
+		padding-block: var(--homepage-padding);
+	}
+	@media (pointer: fine) {
+		padding: 2rem var(--homepage-padding);
+	}
 }
 
 h1 {

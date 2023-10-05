@@ -6,7 +6,6 @@
 	export let service: HomepageService;
 </script>
 
-
 <a
 	href={'/' + service.slug}
 	class="service"

@@ -1,9 +1,10 @@
 <script lang="ts">
 	import HeaderComponent from "./HeaderComponent.svelte";
 	import FooterComponent from "./FooterComponent.svelte";
+	import { page } from '$app/stores';
 </script>
 
-<div class="global-layout">
+<div class="global-layout" class:on-service-page={$page.route.id === '/[serviceSlug]'}>
 	<HeaderComponent />
 
 	<slot />
