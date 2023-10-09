@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import { Burger, Collapse } from '@svelteuidev/core';
 	import Fa from 'svelte-fa/src/fa.svelte';
 	import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +10,10 @@
 
 <header class="shadow">
 	<div class="container">
-		<a href="/">
+		<a
+			href="/"
+			on:click={() => (isNavMenuOpen = false)}
+		>
 			<LogoComponent />
 		</a>
 		<Burger
@@ -19,8 +23,18 @@
 			on:click={() => (isNavMenuOpen = !isNavMenuOpen)}
 		/>
 		<nav class="nav-bar">
-			<a href="/sobre-nosotros">Sobre nosotros</a>
-			<a href="/contacto">Contacto</a>
+			<a
+				href="/sobre-nosotros"
+				class:active={$page.route.id === '/sobre-nosotros'}
+			>
+				Sobre nosotros
+			</a>
+			<a
+				href="/contacto"
+				class:active={$page.route.id === '/contacto'}
+			>
+				Contacto
+			</a>
 		</nav>
 	</div>
 	<Collapse open={isNavMenuOpen} class="toggler">
@@ -29,7 +43,10 @@
 				href="/sobre-nosotros"
 				on:click={() => (isNavMenuOpen = false)}
 			>
-				<div class="nav-item container">
+				<div
+					class="nav-item container"
+					class:active={$page.route.id === '/sobre-nosotros'}
+				>
 					<div>Sobre nosotros</div>
 					<Fa icon={faArrowRight} />
 				</div>
@@ -38,7 +55,10 @@
 				href="/contacto"
 				on:click={() => (isNavMenuOpen = false)}
 			>
-				<div class="nav-item container">
+				<div
+					class="nav-item container"
+					class:active={$page.route.id === '/contacto'}
+				>
 					<div>Contacto</div>
 					<Fa class="icon" icon={faArrowRight} />
 				</div>
@@ -104,6 +124,12 @@
 		justify-content: space-between;
 		align-items: center;
 		font-weight: 600;
+		opacity: 0.9;
+
+		&.active {
+			opacity: 1;
+			text-shadow: -0.02ex 0 0 currentColor, 0.02ex 0 0 currentColor;
+		}
 
 		:global(svg) {
 			font-size: 1.25em;
@@ -117,15 +143,16 @@
 	.nav-bar {
 		display: none;
 		justify-content: flex-end;
-		padding: 0.5rem 1rem;
+		gap: 2rem;
+		padding-block: 0.5rem;
 
 		a {
 			text-decoration: none;
 			font-size: var(--a-font-size);
-			font-weight: bold;
+			font-weight: 600;
+			opacity: 0.9;
 			white-space: nowrap;
 			padding-block: 0.5rem;
-			margin-inline: 1rem;
 			position: relative;
 			-webkit-tap-highlight-color: transparent;
 
@@ -139,10 +166,15 @@
 				background-color: var(--color-accent);
 				opacity: 0;
 				transition: opacity 300ms ease;
-
 			}
+
 			&:hover::after {
 				opacity: 1;
+			}
+
+			&.active {
+				opacity: 1;
+				text-shadow: -0.02ex 0 0 currentColor, 0.02ex 0 0 currentColor;
 			}
 		}
 	}

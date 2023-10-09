@@ -64,12 +64,12 @@
 		flex-direction: column;
 		align-items: center;
 		gap: 1rem;
-		transition: box-shadow 150ms ease;
+		transition: all 150ms ease;
 
 		&:hover {
 			background-color: rgba(var(--color-light-gray-rgb), 0.4);
 			box-shadow: 0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -2px rgba(0,0,0,.05);
-			transition: box-shadow 150ms ease;
+			transition: all 150ms ease;
 		}
 	}
 
