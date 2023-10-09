@@ -7,8 +7,8 @@
 	import { faWhatsapp, faFacebookF, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 	import { Badge } from '@svelteuidev/core';
 	import type { Service } from '$lib/types/Service';
-	import type { Business } from '../lib/types/Business';
-	import { SocialMedia } from '../lib/types/SocialMedia';
+	import type { Business } from '../../lib/types/Business';
+	import { SocialMedia } from '../../lib/types/SocialMedia';
 
 	export let business: Business;
 
@@ -122,7 +122,11 @@
 	>
 		{#each Object.entries(business.socialMedia) as [socialMediaKey, socialMediaLink]}
 			{@const iconData = getIconDataBySocialMediaKey(socialMediaKey)}
-			<a href={(iconData.linkPrefix || '') + socialMediaLink} class={socialMediaKey}>
+			<a
+				class={socialMediaKey}
+				href={(iconData.linkPrefix || '') + socialMediaLink}
+				target="_blank"
+			>
 				<FaLayers size="2.5x">
 					<Fa icon={iconData.icon} scale={0.5} color={iconData.color} />
 				</FaLayers>
@@ -221,7 +225,7 @@
 		a {
 			border: var(--border-width) solid var(--border-color);
 			border-radius: 50%;
-	
+
 			&:hover {
 				background-color: #eee;
 			}

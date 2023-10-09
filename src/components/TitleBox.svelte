@@ -15,7 +15,7 @@
 			font-size: 2rem;
 		}
 		@media (min-width: 640px) {
-			min-height: 300px;
+			min-height: min(300px, 30vh);
 			font-size: 3rem;
 		}
 		color: var(--color-primary);

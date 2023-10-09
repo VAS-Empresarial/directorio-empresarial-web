@@ -5,7 +5,7 @@
 	import type { PageData } from "./$types";
 	import Fa from 'svelte-fa/src/fa.svelte';
 	import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-	import BusinessComponent from "../BusinessComponent.svelte";
+	import BusinessComponent from "./BusinessComponent.svelte";
 
 	export let data: PageData;
 
