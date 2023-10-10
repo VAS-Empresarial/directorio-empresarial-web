@@ -15,9 +15,19 @@
 
 	onMount(() => {
 		swiper = new Swiper(swiperElement, {
-			spaceBetween: 12,
-			slidesPerView: 5,
-			slidesPerGroup: 5,
+			breakpoints: {
+				// when window width is >= 0px
+				0: {
+					slidesPerView: 4,
+					slidesPerGroup: 4,
+					spaceBetween: 12,
+				},
+				1160: {
+					slidesPerView: 5,
+					slidesPerGroup: 5,
+					spaceBetween: 12,
+				},
+			},
 			navigation: {
 				nextEl: '.swiper-button-next',
 				prevEl: '.swiper-button-prev',
@@ -70,7 +80,6 @@
 
 <style lang="scss">
 	:root {
-		--slides-per-view: 5;
 		--swiper-paddings: 214px; // The max size of a service card
 	}
 

@@ -34,13 +34,19 @@
 }
 @media (pointer: fine) {
 	:root {
-		--homepage-padding: 5rem;
+		--homepage-padding: 2.5rem;
 	}
 }
 
 
 * {
 	box-sizing: border-box;
+}
+
+@media (pointer: fine) {
+	html {
+		min-width: 1024px;
+	}
 }
 
 body {

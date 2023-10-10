@@ -18,16 +18,16 @@
 <style lang="scss">
 	:root {
 		@media (max-width: 640px) {
-			--categories-per-view: 2.1;
+			--items-per-view: 2.1;
 		}
 		@media (min-width: 640px) {
-			--categories-per-view: 3.05;
+			--items-per-view: 3.05;
 		}
 		@media (min-width: 824px) {
-			--categories-per-view: 4.05;
+			--items-per-view: 4.05;
 		}
 		@media (min-width: 1024px) {
-			--categories-per-view: 5.05;
+			--items-per-view: 5.05;
 		}
 	}
 
@@ -46,7 +46,7 @@
 	}
 
 	:global(.item-wrapper) {
-		width: calc((100% - var(--homepage-padding)*2 - var(--homepage-item-gap)*(var(--categories-per-view) - 1))/var(--categories-per-view));
+		width: calc((100% - var(--homepage-padding)*2 - var(--homepage-item-gap)*(var(--items-per-view) - 1))/var(--items-per-view));
 		flex-shrink: 0;
 
 		&:first-child {
