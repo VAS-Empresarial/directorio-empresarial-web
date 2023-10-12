@@ -33,10 +33,25 @@
 		background-color: white;
 		display: flex;
 		flex-direction: column;
+		align-items: flex-start;
 		height: 100%;
 	}
 
 	.icon-container {
+		@media (max-width: 640px) {
+			height: 42px;
+
+			:global(.svelte-fa) {
+				font-size: 1.25em;
+			}
+		}
+		@media (min-width: 640px) {
+			height: 3rem;
+
+			:global(.svelte-fa) {
+				font-size: 1.5em;
+			}
+		}
 		background-color: rgba(var(--color-primary-rgb), var(--opacity-background));
 		margin-bottom: 0.5rem;
 
@@ -58,6 +73,7 @@
 	}
 
 	.bottom-row {
+		width: 100%;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;

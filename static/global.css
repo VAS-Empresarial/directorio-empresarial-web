@@ -188,21 +188,6 @@ html::-webkit-scrollbar-thumb:hover {
 .icon-container {
 	display: grid;
 	place-items: center;
-	@media (max-width: 640px) {
-		width: 42px;
-		height: 42px;
-
-		.svelte-fa {
-			font-size: 1.25em;
-		}
-	}
-	@media (min-width: 640px) {
-		width: 3rem;
-		height: 3rem;
-
-		.svelte-fa {
-			font-size: 1.5em;
-		}
-	}
+	aspect-ratio: 1;
 	border-radius: 50%;
 }

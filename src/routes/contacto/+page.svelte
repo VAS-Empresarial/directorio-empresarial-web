@@ -1,9 +1,36 @@
-<script>
+<script lang="ts">
+	import { onMount } from 'svelte';
 	import Fa from 'svelte-fa/src/fa.svelte';
 	import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 	import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
 	import TitleBox from "../../components/TitleBox.svelte";
 
+	onMount(() => {
+		convertFaIconToDuotone('.envelope path');
+	});
+
+	function convertFaIconToDuotone(svgPathSelector: string) {
+		const originalPathElement = document.querySelector(svgPathSelector)!;
+		const originalPathTransformValue = originalPathElement.getAttribute('transform')!;
+		const pathParentElement = originalPathElement!.parentElement!;
+		const pathString = originalPathElement.getAttribute('d')!;
+		const pathSegments = pathString.match(/M[^Mz]*z/g)!; // Match substrings that start with "M" and end with "z". 
+		const newPathElements: SVGPathElement[] = [];
+
+		pathParentElement.removeChild(originalPathElement);
+
+		pathSegments.forEach((path) => {
+			const pathElement = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+			pathElement.setAttribute('d', path);
+			pathElement.setAttribute('fill', 'currentColor');
+			pathElement.setAttribute('transform', originalPathTransformValue);
+			newPathElements.push(pathElement);
+			pathParentElement.appendChild(pathElement);
+		});
+
+		newPathElements[0].classList.add('secondary-color');
+		newPathElements[1].classList.add('primary-color');
+	}
 </script>
 
 <main>
@@ -22,7 +49,7 @@
 			<a href="mailto:emprendedores@vas.cr">
 				<div class="card">
 					<div class="contact-icon-container">
-						<Fa class="icon" icon={faEnvelope} />
+						<Fa class="icon envelope" icon={faEnvelope} />
 					</div>
 					<h4>emprendedores@vas.cr</h4>
 				</div>
@@ -92,11 +119,16 @@
 				font-size: 5em;
 			}
 		}
+		border: solid var(--color-accent) 4px;
 		border-radius: 50%;
-		background-color: rgba(var(--color-primary-rgb), var(--opacity-background));
 
-		:global(svg path) {
+		:global(svg path:not(.primary-color):not(.secondary-color)),
+		:global(svg path.primary-color) {
 			fill: var(--color-primary);
+		}
+
+		:global(svg path.secondary-color) {
+			fill: var(--color-primary-light);
 		}
 	}
 </style>
