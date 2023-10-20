@@ -48,6 +48,7 @@
 		[SocialMedia.whatsApp]: {
 			icon: faWhatsapp,
 			color: '#25d366',
+			linkPrefix: 'https://api.whatsapp.com/send?phone=506',
 		},
 		[SocialMedia.facebook]: {
 			icon: faFacebookF,
