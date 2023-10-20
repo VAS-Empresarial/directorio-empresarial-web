@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { setContext } from "svelte";
 	import { fly } from 'svelte/transition';
-	import { flip } from 'svelte/animate';
 	import type { PageData } from "./$types";
 	import Fa from 'svelte-fa/src/fa.svelte';
 	import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -59,6 +58,21 @@
 		}
 
 		.icon-container {
+			@media (max-width: 640px) {
+				height: 42px;
+
+				:global(.svelte-fa) {
+					font-size: 1.25em;
+				}
+			}
+			@media (min-width: 640px) {
+				height: 3rem;
+
+				:global(.svelte-fa) {
+					font-size: 1.5em;
+				}
+			}
+
 			:global(svg path) {
 				fill: var(--color-accent);
 			}

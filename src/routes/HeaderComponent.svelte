@@ -5,7 +5,7 @@
 	import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 	import LogoComponent from './LogoComponent.svelte';
 
-    let isNavMenuOpen = false;
+	let isNavMenuOpen = false;
 </script>
 
 <header class="shadow">
@@ -98,7 +98,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-    	flex-wrap: wrap;
+		flex-wrap: wrap;
 		padding-block: 0.5rem;
 	}
 

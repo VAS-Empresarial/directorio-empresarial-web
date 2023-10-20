@@ -98,7 +98,7 @@
 	}
 
 	.swiper-slide {
-    	height: auto;
+		height: auto;
 		transition: all 150ms ease;
 
 		&:hover {

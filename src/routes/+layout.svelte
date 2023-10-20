@@ -1,6 +1,7 @@
 <script lang="ts">
 	import HeaderComponent from "./HeaderComponent.svelte";
 	import FooterComponent from "./FooterComponent.svelte";
+	import SiteConditionsModal from "./SiteConditionsModal.svelte";
 	import { page } from '$app/stores';
 </script>
 
@@ -11,6 +12,8 @@
 
 	<FooterComponent />
 </div>
+
+<SiteConditionsModal />
 
 <style lang="scss">
 	.global-layout {

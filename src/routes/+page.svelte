@@ -4,7 +4,7 @@
 	import CarouselComponent from '../components/carousel/CarouselComponent.svelte';
 	import ServiceComponent from './ServiceComponent.svelte';
 
-    export let data: PageData;
+ 	export let data: PageData;
 
 	let { categories } = data;
 </script>

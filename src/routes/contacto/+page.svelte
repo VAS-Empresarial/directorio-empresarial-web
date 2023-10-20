@@ -4,33 +4,7 @@
 	import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 	import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
 	import TitleBox from "../../components/TitleBox.svelte";
-
-	onMount(() => {
-		convertFaIconToDuotone('.envelope path');
-	});
-
-	function convertFaIconToDuotone(svgPathSelector: string) {
-		const originalPathElement = document.querySelector(svgPathSelector)!;
-		const originalPathTransformValue = originalPathElement.getAttribute('transform')!;
-		const pathParentElement = originalPathElement!.parentElement!;
-		const pathString = originalPathElement.getAttribute('d')!;
-		const pathSegments = pathString.match(/M[^Mz]*z/g)!; // Match substrings that start with "M" and end with "z". 
-		const newPathElements: SVGPathElement[] = [];
-
-		pathParentElement.removeChild(originalPathElement);
-
-		pathSegments.forEach((path) => {
-			const pathElement = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-			pathElement.setAttribute('d', path);
-			pathElement.setAttribute('fill', 'currentColor');
-			pathElement.setAttribute('transform', originalPathTransformValue);
-			newPathElements.push(pathElement);
-			pathParentElement.appendChild(pathElement);
-		});
-
-		newPathElements[0].classList.add('secondary-color');
-		newPathElements[1].classList.add('primary-color');
-	}
+	import { convertFaIconToDuotone } from '$lib/actions';
 </script>
 
 <main>
@@ -48,7 +22,10 @@
 		<div class="container contact-cards">
 			<a href="mailto:emprendedores@vas.cr">
 				<div class="card">
-					<div class="contact-icon-container">
+					<div
+						class="contact-icon-container"
+						use:convertFaIconToDuotone={['secondary-color', 'primary-color']}
+					>
 						<Fa class="icon envelope" icon={faEnvelope} />
 					</div>
 					<h4>emprendedores@vas.cr</h4>
@@ -59,7 +36,7 @@
 					<div class="contact-icon-container">
 						<Fa class="icon" icon={faFacebookF} />
 					</div>
-					<h4>@ExcelenciaVAS</h4>
+					<h4>ExcelenciaVAS</h4>
 				</div>
 			</a>
 		</div>
@@ -72,7 +49,7 @@
 
 		@media (max-width: 640px) {
 			flex-direction: column;
-    		align-items: center;
+			align-items: center;
 			padding-block: 1rem;
 			gap: 1.5rem;
 		}
@@ -93,10 +70,17 @@
 		gap: 1rem;
 		transition: all 150ms ease;
 
-		&:hover {
-			background-color: rgba(var(--color-light-gray-rgb), 0.4);
+		@media (pointer: coarse) {
+			background-color: rgba(var(--color-light-gray-rgb), 0.65);
 			box-shadow: 0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -2px rgba(0,0,0,.05);
-			transition: all 150ms ease;
+		}
+
+		@media (pointer: fine) {
+			&:hover {
+				background-color: rgba(var(--color-light-gray-rgb), 0.4);
+				box-shadow: 0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -2px rgba(0,0,0,.05);
+				transition: all 150ms ease;
+			}
 		}
 	}
 
@@ -128,7 +112,7 @@
 		}
 
 		:global(svg path.secondary-color) {
-			fill: var(--color-primary-light);
+			fill: rgba(var(--color-primary-rgb), 0.65);
 		}
 	}
 </style>
