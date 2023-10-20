@@ -115,7 +115,7 @@
 		</div>
 	{/if}
 	<div class="card__body">
-		{business.description || ''}
+		{@html business.description || ''}
 	</div>
 	<footer
 		class="social-media"
