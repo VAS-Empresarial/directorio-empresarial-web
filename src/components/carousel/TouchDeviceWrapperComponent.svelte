@@ -4,7 +4,7 @@
 	export let items: any[];
 </script>
 
-<div class="carousel">
+<div class="carousel touch-device">
 	{#each items as item, index}
 		<div
 			class="item-wrapper shadow"
@@ -16,7 +16,7 @@
 </div>
 
 <style lang="scss">
-	:root {
+	.touch-device {
 		@media (max-width: 640px) {
 			--items-per-view: 2.1;
 		}

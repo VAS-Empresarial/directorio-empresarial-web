@@ -41,7 +41,7 @@
 	});
 </script>
 
-<div class="carousel">
+<div class="carousel mouse-device">
 	<div class="swiper" bind:this={swiperElement}>
 		<div class="swiper-wrapper">
 			{#each items as item, index}
@@ -79,7 +79,7 @@
 </div>
 
 <style lang="scss">
-	:root {
+	.mouse-device {
 		--swiper-paddings: 214px; // The max size of a service card
 		@media (min-width: 0px) {
 			--items-per-view: 4;
