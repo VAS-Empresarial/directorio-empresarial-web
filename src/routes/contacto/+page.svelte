@@ -7,7 +7,7 @@
 	import { convertFaIconToDuotone } from '$lib/actions';
 </script>
 
-<main>
+<main class="contact-page">
 	<header class="container">
 		<TitleBox title="Contacto"/>
 	</header>

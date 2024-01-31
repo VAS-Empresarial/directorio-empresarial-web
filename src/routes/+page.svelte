@@ -9,7 +9,7 @@
 	let { categories } = data;
 </script>
 
-<main class="light-gray-background">
+<main class="homepage light-gray-background">
 	<div class="container">
 		<WelcomeBox />
 	</div>

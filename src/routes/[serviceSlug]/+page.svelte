@@ -5,18 +5,28 @@
 	import Fa from 'svelte-fa/src/fa.svelte';
 	import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 	import BusinessComponent from "./BusinessComponent.svelte";
+	import { hasNavigationHistory } from '$lib/stores';
 
 	export let data: PageData;
 
 	const { service, businesses } = data;
 	setContext('service', service);
+
+	function navigateBack() {
+		if ($hasNavigationHistory) {
+			window.history.back();
+		} else {
+			window.location.href = '/';
+		}
+	}
 </script>
 
-<main class="light-gray-background">
+<main class="service-page light-gray-background">
 	<div class="title-bar container">
 		<a
 			class="icon-container"
 			href="/"
+			on:click|preventDefault={navigateBack}
 		>
 			<Fa class="icon" icon={faArrowLeft} />
 		</a>

@@ -81,6 +81,12 @@
 <style lang="scss">
 	:root {
 		--swiper-paddings: 214px; // The max size of a service card
+		@media (min-width: 0px) {
+			--items-per-view: 4;
+		}
+		@media (min-width: 1160px) {
+			--items-per-view: 5;
+		}
 	}
 
 	.carousel {
@@ -99,6 +105,9 @@
 
 	.swiper-slide {
 		height: auto;
+		// This calculated width and margin-right is a UI fix to prevent the slides taking 100% width on transition start
+		width: calc((100% - var(--homepage-item-gap)*(var(--items-per-view) - 1))/var(--items-per-view));
+		margin-right: var(--homepage-item-gap);
 		transition: all 150ms ease;
 
 		&:hover {

@@ -3,7 +3,7 @@
 
 </script>
 
-<main>
+<main class="about-us-page">
 	<header class="container">
 		<TitleBox title="Sobre Nosotros"/>
 	</header>
