@@ -8,7 +8,7 @@
 
 <style lang="scss">
 	.title-box {
-		background-color: var(--color-light-gray);
+		background-color: var(--global-color-light-gray);
 		padding: 2rem;
 		@media (max-width: 640px) {
 			min-height: 200px;
@@ -18,7 +18,7 @@
 			min-height: min(300px, 30vh);
 			font-size: 3rem;
 		}
-		color: var(--color-primary);
+		color: var(--global-color-primary);
 		display: grid;
 		place-items: center;
 	}

@@ -4,12 +4,12 @@
 
 <style lang="scss">
 	.welcome-box {
-		background-image: linear-gradient(to right, var(--color-primary), var(--color-primary-light));
+		background-image: linear-gradient(to right, var(--global-color-primary), var(--global-color-primary-light));
 		position: relative;
 		overflow: hidden;
 		padding-left: 1.5rem;
 		color: white;
-		border-radius: var(--border-radius);
+		border-radius: var(--global-border-radius);
 
 		@media (min-width: 640px) {
 			padding-left: min(22vw, 300px);
@@ -72,7 +72,7 @@
 		em {
 			font-style: normal;
 			font-weight: 500;
-			color: var(--color-accent-light);
+			color: var(--global-color-accent-light);
 		}
 	}
 </style>

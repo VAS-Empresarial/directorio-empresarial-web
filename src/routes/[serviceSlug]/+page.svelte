@@ -84,7 +84,7 @@
 			}
 
 			:global(svg path) {
-				fill: var(--color-accent);
+				fill: var(--global-color-accent);
 			}
 
 			&:hover {

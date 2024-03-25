@@ -1,40 +1,37 @@
 
 :root {
-	--container-width: 1280px;
-	--color-primary: #01719F;
-	--color-primary-rgb: 1, 113, 159;
-	--color-primary-light: #1E8EC5;
-	--color-accent: #D3A92D;
-	--color-accent-rgb: 211, 169, 45;
-	--color-accent-light: hsl(45, 75%, 60%); /* Original has 65% saturation and 50% lightness */
-	--color-accent-dark: hsl(45, 65%, 45%); /* Original has lightness of 50% */
-	--color-light-gray: #E9ECF5;
-	--color-light-gray-light: hsl(225, 38%, 98%); /* Original has lightness of 94% */
-	--color-light-gray-rgb: 233, 236, 245;
-	--opacity-background: 0.15;
-	--border-width: 2px;
-	--border-color: #ccc;
-	--border-radius: .25rem;
+	--global-color-primary: #01719F;
+	--global-color-primary-rgb: 1, 113, 159;
+	--global-color-primary-light: #1E8EC5;
+	--global-color-accent: #D3A92D;
+	--global-color-accent-rgb: 211, 169, 45;
+	--global-color-accent-light: hsl(45, 75%, 60%); /* Original has 65% saturation and 50% lightness */
+	--global-color-accent-dark: hsl(45, 65%, 45%); /* Original has lightness of 50% */
+	--global-color-light-gray: #E9ECF5;
+	--global-color-light-gray-light: hsl(225, 38%, 98%); /* Original has lightness of 94% */
+	--global-color-light-gray-rgb: 233, 236, 245;
+	--global-background-opacity: 0.15;
+	--global-border-width: 2px;
+	--global-border-color: #ccc;
+	--global-border-radius: .25rem;
 }
 @media (max-width: 640px) {
 	:root {
-		--homepage-padding: 1.2rem;
-		--homepage-item-gap: 0.6rem;
-		--homepage-service-padding: 0.75rem;
-		--section-padding: 1rem;
+		--global-homepage-padding: 1.2rem;
+		--global-homepage-item-gap: 0.6rem;
+		--global-scale-factor: 0.75;
 	}
 }
 @media (min-width: 640px) {
 	:root {
-		--homepage-padding: 1.5rem;
-		--homepage-item-gap: 0.75rem;
-		--homepage-service-padding: 1rem;
-		--section-padding: 1.5rem;
+		--global-homepage-padding: 1.5rem;
+		--global-homepage-item-gap: 0.75rem;
+		--global-scale-factor: 1;
 	}
 }
 @media (pointer: fine) {
 	:root {
-		--homepage-padding: 5rem;
+		--global-homepage-padding: 5rem;
 	}
 }
 
@@ -51,7 +48,6 @@
 
 body {
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-	line-height: 1.5;
 	margin: 0;
 }
 
@@ -61,11 +57,15 @@ body, h1, h2, h3, h4 {
 
 main {
 	@media (pointer: coarse) {
-		padding-block: var(--homepage-padding);
+		padding-block: var(--global-homepage-padding);
 	}
 	@media (pointer: fine) {
 		padding-block: 2rem;
 	}
+}
+
+h1, h2, h3, h4, p {
+	line-height: 1.5;
 }
 
 h1 {
@@ -134,15 +134,15 @@ a {
 }
 
 .container {
-	max-width: var(--container-width);
+	max-width: 1280px;
 	margin-inline: auto;
-	padding-inline: var(--homepage-padding);
+	padding-inline: var(--global-homepage-padding);
 	padding-bottom: 0;
 }
 
 /* SvelteUI */
 .svelteui-Badge-root.filled {
-	background-color: var(--color-primary) !important;
+	background-color: var(--global-color-primary) !important;
 }
 
 /* Custom Scrollbar */
@@ -170,7 +170,7 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 .card {
-	border-radius: var(--border-radius);
+	border-radius: var(--global-border-radius);
 }
 
 .hidden {
@@ -182,7 +182,7 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 .light-gray-background {
-	background-color: var(--color-light-gray);
+	background-color: var(--global-color-light-gray);
 }
 
 .icon-container {

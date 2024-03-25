@@ -32,10 +32,10 @@
 	}
 
 	.carousel {
-		margin-inline: calc(-1 * var(--homepage-padding));
+		margin-inline: calc(-1 * var(--global-homepage-padding));
 		display: flex;
   		overflow-x: auto;
-		gap: var(--homepage-item-gap);
+		gap: var(--global-homepage-item-gap);
 		padding-block: 1rem 2rem;
 
 		// Hide scrollbar
@@ -46,15 +46,15 @@
 	}
 
 	:global(.item-wrapper) {
-		width: calc((100% - var(--homepage-padding)*2 - var(--homepage-item-gap)*(var(--items-per-view) - 1))/var(--items-per-view));
+		width: calc((100% - var(--global-homepage-padding)*2 - var(--global-homepage-item-gap)*(var(--items-per-view) - 1))/var(--items-per-view));
 		flex-shrink: 0;
 
 		&:first-child {
-			margin-left: var(--homepage-padding);
+			margin-left: var(--global-homepage-padding);
 		}
 
 		&:last-child {
-			margin-right: var(--homepage-padding);
+			margin-right: var(--global-homepage-padding);
 		}
 	}
 </style>

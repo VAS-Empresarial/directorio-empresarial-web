@@ -43,8 +43,8 @@
 			<Fa class="icon" icon={faChurch} />
 		</div>
 		<FaLayers class="icon small">
-			<Fa icon={faEquals} color="rgba(var(--color-primary-rgb), 0.65)" />
-			<FaLayersText scale={1.15} rotate={15} translateY={-0.08} color="var(--color-primary)" style="font-weight: 600">
+			<Fa icon={faEquals} color="rgba(var(--global-color-primary-rgb), 0.65)" />
+			<FaLayersText scale={1.15} rotate={15} translateY={-0.08} color="var(--global-color-primary)" style="font-weight: 600">
 				/
 			</FaLayersText>
 		</FaLayers>
@@ -123,11 +123,11 @@
 		}
 
 		:global(svg path.primary-color) {
-			fill: var(--color-primary);
+			fill: var(--global-color-primary);
 		}
 
 		:global(svg path.secondary-color) {
-			fill: rgba(var(--color-primary-rgb), 0.65);
+			fill: rgba(var(--global-color-primary-rgb), 0.65);
 		}
 
 		:global(svg path.white) {
@@ -145,9 +145,9 @@
 		}
 
 		:global(button) {
-			background-image: linear-gradient(to right, var(--color-accent-dark), var(--color-accent));
+			background-image: linear-gradient(to right, var(--global-color-accent-dark), var(--global-color-accent));
 			margin-bottom: 1rem;
-			outline-color: var(--color-accent) !important;
+			outline-color: var(--global-color-accent) !important;
 		}
 
 		:global(.svelteui-Checkbox-root) {

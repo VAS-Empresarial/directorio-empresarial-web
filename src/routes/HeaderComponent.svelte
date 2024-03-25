@@ -3,7 +3,6 @@
 	import { Burger, Collapse } from '@svelteuidev/core';
 	import Fa from 'svelte-fa/src/fa.svelte';
 	import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-	import LogoComponent from './LogoComponent.svelte';
 
 	let isNavMenuOpen = false;
 </script>
@@ -14,7 +13,11 @@
 			href="/"
 			on:click={() => (isNavMenuOpen = false)}
 		>
-			<LogoComponent />
+			<img
+				class="logo"
+				src="/images/Logo Directorio Empresarial.png"
+				alt="Logo Directorio Empresarial"
+			>
 		</a>
 		<Burger
 			class="burger-button"
@@ -99,7 +102,7 @@
 		justify-content: space-between;
 		align-items: center;
 		flex-wrap: wrap;
-		padding-block: 0.5rem;
+		padding-block: 0.75rem;
 	}
 
 	:global(.toggler) {
@@ -117,8 +120,12 @@
 		}
 	}
 
+	.logo {
+		height: calc(var(--global-scale-factor) * 68px);
+	}
+
 	.nav-menu .nav-item {
-		border-top: 1px solid var(--color-light-gray);
+		border-top: 1px solid var(--global-color-light-gray);
 		padding-block: 1rem;
 		display: flex;
 		justify-content: space-between;
@@ -136,7 +143,7 @@
 		}
 
 		:global(svg path) {
-			fill: var(--color-accent);
+			fill: var(--global-color-accent);
 		}
 	}
 
@@ -163,7 +170,7 @@
 				position: absolute;
 				bottom: 0;
 				left: 0;
-				background-color: var(--color-accent);
+				background-color: var(--global-color-accent);
 				opacity: 0;
 				transition: opacity 300ms ease;
 			}

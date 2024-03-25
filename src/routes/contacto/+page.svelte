@@ -71,13 +71,13 @@
 		transition: all 150ms ease;
 
 		@media (pointer: coarse) {
-			background-color: rgba(var(--color-light-gray-rgb), 0.65);
+			background-color: rgba(var(--global-color-light-gray-rgb), 0.65);
 			box-shadow: 0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -2px rgba(0,0,0,.05);
 		}
 
 		@media (pointer: fine) {
 			&:hover {
-				background-color: rgba(var(--color-light-gray-rgb), 0.4);
+				background-color: rgba(var(--global-color-light-gray-rgb), 0.4);
 				box-shadow: 0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -2px rgba(0,0,0,.05);
 				transition: all 150ms ease;
 			}
@@ -103,16 +103,16 @@
 				font-size: 5em;
 			}
 		}
-		border: solid var(--color-accent) 4px;
+		border: solid var(--global-color-accent) 4px;
 		border-radius: 50%;
 
 		:global(svg path:not(.primary-color):not(.secondary-color)),
 		:global(svg path.primary-color) {
-			fill: var(--color-primary);
+			fill: var(--global-color-primary);
 		}
 
 		:global(svg path.secondary-color) {
-			fill: rgba(var(--color-primary-rgb), 0.65);
+			fill: rgba(var(--global-color-primary-rgb), 0.65);
 		}
 	}
 </style>

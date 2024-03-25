@@ -52,11 +52,11 @@
 				font-size: 1.5em;
 			}
 		}
-		background-color: rgba(var(--color-primary-rgb), var(--opacity-background));
+		background-color: rgba(var(--global-color-primary-rgb), var(--global-background-opacity));
 		margin-bottom: 0.5rem;
 
 		:global(svg path) {
-			fill: var(--color-primary);
+			fill: var(--global-color-primary);
 		}
 	}
 
@@ -88,7 +88,7 @@
 		}
 
 		:global(svg path) {
-			fill: var(--color-accent);
+			fill: var(--global-color-accent);
 		}
 	}
 

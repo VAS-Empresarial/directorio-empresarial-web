@@ -1,16 +1,21 @@
 <script>
 	import Fa from 'svelte-fa/src/fa.svelte';
 	import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
-	import LogoComponent from "./LogoComponent.svelte";
 </script>
 
 <footer>
 	<div class="container">
-		<LogoComponent white />
+		<a href="/sobre-nosotros">
+			<img
+				class="logo logo-excelencia"
+				src="/images/Logo Excelencia.png"
+				alt="Logo Grupo Excelencia"
+			>
+		</a>
 		<div class="text">Vida Abundante Empresarial es un producto del grupo <a href="/sobre-nosotros">Excelencia</a> de la iglesia <a href="https://www.vas.cr" target="_blank">Vida Abundante del Sur <Fa icon={faArrowUpRightFromSquare} size="sm" /></a></div>
 		<a href="https://www.vas.cr" target="_blank">
 			<img
-				class="logo-VAS"
+				class="logo logo-VAS"
 				src="/images/Logo VAS - blanco.webp"
 				alt="Logo Vida Abundante del Sur"
 			>
@@ -34,28 +39,27 @@
 			opacity: 0.9;
 			z-index: -1;
 		}
-
-		a {
-			font-weight: bold;
-			color: var(--color-accent-light);
-			white-space: nowrap;
-
-			&:hover {
-				text-decoration: underline;
-			}
-		}
 	}
 
 	.container {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		gap: 1rem 3rem;
-		padding-block: 1rem;
+		gap: 1.5rem 3rem;
+		padding-block: 1.5rem;
 		@media (max-width: 824px) {
 			flex-wrap: wrap;
 			justify-content: center;
 		}
+	}
+
+	.logo {
+		opacity: 0.9;
+	}
+
+	.logo-excelencia {
+		height: calc(var(--global-scale-factor) * 64px);
+		filter: brightness(200%) grayscale(100%);
 	}
 
 	.text {
@@ -68,6 +72,16 @@
 			width: 100%;
 			order: -1;
 			padding-top: 0.5rem;
+		}
+
+		a {
+			font-weight: bold;
+			color: var(--global-color-accent-light);
+			white-space: nowrap;
+
+			&:hover {
+				text-decoration: underline;
+			}
 		}
 	}
 

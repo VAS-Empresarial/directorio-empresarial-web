@@ -174,14 +174,14 @@
 	.fallback-logo {
 		display: grid;
 		place-items: center;
-		background-color: rgba(var(--color-primary-rgb), var(--opacity-background));
+		background-color: rgba(var(--global-color-primary-rgb), var(--global-background-opacity));
 
 		:global(.icon) {
 			font-size: 1.5em;
 		}
 
 		:global(svg path) {
-			fill: var(--color-primary);
+			fill: var(--global-color-primary);
 		}
 	}
 
@@ -224,7 +224,7 @@
 		gap: 0.5em;
 
 		a {
-			border: var(--border-width) solid var(--border-color);
+			border: var(--global-border-width) solid var(--global-border-color);
 			border-radius: 50%;
 
 			&:hover {

@@ -90,14 +90,14 @@
 	}
 
 	.carousel {
-		width: calc(100% + var(--homepage-item-gap)*2 + var(--swiper-paddings)*2);
-		margin-inline: calc(-1*(var(--homepage-item-gap) + var(--swiper-paddings)));
+		width: calc(100% + var(--global-homepage-item-gap)*2 + var(--swiper-paddings)*2);
+		margin-inline: calc(-1*(var(--global-homepage-item-gap) + var(--swiper-paddings)));
 		padding-block: 1rem;
 		overflow: hidden;
 	}
 
 	.swiper {
-		max-width: calc(100% - var(--homepage-item-gap)*2 - var(--swiper-paddings)*2);
+		max-width: calc(100% - var(--global-homepage-item-gap)*2 - var(--swiper-paddings)*2);
 		margin-inline: auto;
 		position: relative;
 		overflow: visible;
@@ -106,8 +106,8 @@
 	.swiper-slide {
 		height: auto;
 		// This calculated width and margin-right is a UI fix to prevent the slides taking 100% width on transition start
-		width: calc((100% - var(--homepage-item-gap)*(var(--items-per-view) - 1))/var(--items-per-view));
-		margin-right: var(--homepage-item-gap);
+		width: calc((100% - var(--global-homepage-item-gap)*(var(--items-per-view) - 1))/var(--items-per-view));
+		margin-right: var(--global-homepage-item-gap);
 		transition: all 150ms ease;
 
 		&:hover {
@@ -128,16 +128,16 @@
 	}
 
 	.gradient-left {
-		background: linear-gradient(to left, rgba(var(--color-light-gray-rgb), 0.5), var(--color-light-gray));
-		left: calc(-1*(var(--homepage-item-gap)));
+		background: linear-gradient(to left, rgba(var(--global-color-light-gray-rgb), 0.5), var(--global-color-light-gray));
+		left: calc(-1*(var(--global-homepage-item-gap)));
 		transform: translateX(-100%);
 		justify-content: right;
 		padding-right: .5rem;
 	}
 
 	.gradient-right {
-		background: linear-gradient(to right, rgba(var(--color-light-gray-rgb), 0.5), var(--color-light-gray));
-		right: calc(-1*(var(--homepage-item-gap)));
+		background: linear-gradient(to right, rgba(var(--global-color-light-gray-rgb), 0.5), var(--global-color-light-gray));
+		right: calc(-1*(var(--global-homepage-item-gap)));
 		transform: translateX(100%);
 		justify-content: left;
 		padding-left: .5rem;
@@ -146,7 +146,7 @@
 	.swiper-button {
 		width: 3rem;
 		height: 3rem;
-		color: var(--color-accent);
+		color: var(--global-color-accent);
 		background-color: white;
 		border-color: transparent;
 		border-radius: 50%;
@@ -155,12 +155,12 @@
 
 		// Make the icon thicker
 		:global(svg path) {
-			stroke: var(--color-accent);
+			stroke: var(--global-color-accent);
 			stroke-width: 1rem;
 		}
 
 		&:hover {
-			background-color: var(--color-light-gray-light);
+			background-color: var(--global-color-light-gray-light);
 		}
 
 		&:focus {
