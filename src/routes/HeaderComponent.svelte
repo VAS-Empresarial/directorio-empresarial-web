@@ -75,10 +75,12 @@
 		@media (max-width: 640px) {
 			--a-font-size: 12px;
 			--h1-font-size: 7vw;
+			--container-padding-block: 0.5rem;
 		}
 		@media (min-width: 640px) {
 			--a-font-size: 14px;
 			--h1-font-size: 2.5rem;
+			--container-padding-block: 0.75rem;
 		}
 		@media (min-width: 1024px) {
 			--a-font-size: 16px;
@@ -102,7 +104,7 @@
 		justify-content: space-between;
 		align-items: center;
 		flex-wrap: wrap;
-		padding-block: 0.75rem;
+		padding-block: var(--container-padding-block);
 	}
 
 	:global(.toggler) {
