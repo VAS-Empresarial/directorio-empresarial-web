@@ -7,16 +7,16 @@
 	<div class="container">
 		<a href="/sobre-nosotros">
 			<img
-				class="logo logo-excelencia"
-				src="/images/Logo Excelencia.png"
+				class="logo"
+				src="/images/Logo Excelencia - Horizontal Blanco.png"
 				alt="Logo Grupo Excelencia"
 			>
 		</a>
 		<div class="text">Vida Abundante Empresarial es un producto del grupo <a href="/sobre-nosotros">Excelencia</a> de la iglesia <a href="https://www.vas.cr" target="_blank">Vida Abundante del Sur <Fa icon={faArrowUpRightFromSquare} size="sm" /></a></div>
 		<a href="https://www.vas.cr" target="_blank">
 			<img
-				class="logo logo-VAS"
-				src="/images/Logo VAS - blanco.webp"
+				class="logo"
+				src="/images/Logo VAS - Blanco.png"
 				alt="Logo Vida Abundante del Sur"
 			>
 		</a>
@@ -55,11 +55,7 @@
 
 	.logo {
 		opacity: 0.9;
-	}
-
-	.logo-excelencia {
-		height: calc(var(--global-scale-factor) * 64px);
-		filter: brightness(200%) grayscale(100%);
+		height: calc(var(--global-scale-factor) * 72px);
 	}
 
 	.text {

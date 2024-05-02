@@ -18,7 +18,7 @@
 			&::before {
 				content: "";
 				position: absolute;
-				background-image: url('/images/Logo Vida Abundante - blanco.png');
+				background-image: url('/images/Logo Vida Abundante - Blanco.png');
 				background-size: cover;
 				opacity: 0.15;
 				z-index: 0;
@@ -50,7 +50,7 @@
 		&::after {
 			content: "";
 			position: absolute;
-			background-image: url('/images/Logo Vida Abundante - blanco.png');
+			background-image: url('/images/Logo Vida Abundante - Blanco.png');
 			background-size: cover;
 			opacity: 0.2;
 			z-index: 0;
